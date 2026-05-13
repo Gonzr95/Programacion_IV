@@ -1,0 +1,39 @@
+<!-- texto dinamico con interpolacion -->
+<p>Bienvenido a la pagina de {{ owner }}</p>
+
+
+<p>El tema de la pagina es: {{ theme() }} </p>
+
+<!-- () = escucha eventos del elemento -->
+<button (click)="toogleButton()">Active y desactive el boton ⬇️</button>
+<br>
+
+<!-- [] = envia datos a la propiedad  del elemento -->
+<button [disabled]="isButtonDisabled()" [class.is-disabled]="isButtonDisabled()">Property and class binding</button>
+
+
+<!-- añadir eventos, pasar eventos y reaccionar a ellos -->
+<input type="text" 
+    (keyup.enter)="showInput()" 
+    (keyup)="updateInputValue($event)" 
+    placeholder="Ingrese texto">
+
+<p>{{ inputValue() }}</p>
+<br><br><br>
+
+<h3>Two way Binding</h3>
+<p>Se usa para mantener datos de componentes en sincronizacion mientras el usuario interactua </p>
+<p> {{ firstName }} </p>
+<input type="text" [(ngModel)]="firstName">
+
+<h3>Two way binding entre componentes</h3>
+<app-counter [(count)]="initialCount"></app-counter>
+
+<br><br><br>
+<p>⬇️ Router link + Lazy Loading ⬇️</p>
+<a routerLink="/about">About</a>
+
+
+<br><br><br>
+<p> Lazy Loading de rutas hijas (cargo otro router y ese decide que se ve)</p>
+<a routerLink="/admin/home">Modulo Admin</a>
