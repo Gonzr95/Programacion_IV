@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { AdminRoutingModule } from "../../admin-routing-module";
+import { RouterLink } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
-  imports: [AdminRoutingModule],
+  standalone: true,
+  imports: [ RouterLink ],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
