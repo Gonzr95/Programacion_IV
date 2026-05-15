@@ -3,9 +3,15 @@ import { FormsModule } from '@angular/forms';
 import { Counter } from '../counter/counter';
 import { RouterLink } from "@angular/router";
 
+// PrimeNG
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+
+
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, Counter, RouterLink],
+  imports: [FormsModule, Counter, RouterLink, ButtonModule, InputTextModule, CardModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
@@ -36,6 +42,9 @@ export class Home {
 
   initialCount = 81;
   
-
+  toggleDarkMode() {
+    const element = document.querySelector('html');
+    element!.classList.toggle('my-app-dark');
+}
   
 }
