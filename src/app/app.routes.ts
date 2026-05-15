@@ -22,6 +22,12 @@ export const routes: Routes = [
         title: 'About',
     },
     {
+        path: 'signUp',
+        loadComponent: () => import('./features/auth/components/sign-up/sign-up').
+            then(m => m.SignUp),
+        title: 'Sign Up',
+    },
+    {
         // Carga un grupo de rutas - Lazy loading
         // Esto es como abrir una carpeta con varios archivos
         // a diferencia de loadComponent que solo carga el 

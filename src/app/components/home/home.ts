@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Counter } from '../counter/counter';
 import { RouterLink } from "@angular/router";
@@ -7,17 +7,26 @@ import { RouterLink } from "@angular/router";
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
+import { SelectModule } from 'primeng/select';
+import { ThemeService } from '../../features/themes/service/theme';
 
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, Counter, RouterLink, ButtonModule, InputTextModule, CardModule],
+  imports: [FormsModule, Counter, RouterLink, 
+            ButtonModule, InputTextModule, CardModule, SelectModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {
-  
-  
+export class Home implements OnInit {
+  constructor(public themeService: ThemeService){}
+  selectedTheme: any;
+  selectedMode: any;
+  themes = [
+    { name: 'Aura', key: 'aura' },
+    { name: 'Lara', key: 'lara' },
+    { name: 'Material', key: 'material' }
+  ];
   
   
   owner: string = 'Gonza';
@@ -42,9 +51,15 @@ export class Home {
 
   initialCount = 81;
   
-  toggleDarkMode() {
-    const element = document.querySelector('html');
-    element!.classList.toggle('my-app-dark');
-}
+
+  changeTheme(theme: any) {
+   this.themeService.setTheme(theme.key);
+  }
+
+  ngOnInit(): void {
+    this.selectedTheme = this.themes.find(
+    t => t.key === this.themeService.theme()
+    );
+  }
   
 }
